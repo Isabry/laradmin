@@ -6,7 +6,7 @@ namespace Isabry\Laradmin;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaradminServiceProvider extends ServiceProvider
+class ServiceProvider extends ServiceProvider
 {
 	/*-------------------------------------------------------------------------
 	 * Indicates if loading of the provider is deferred.
@@ -23,10 +23,10 @@ class LaradminServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		// Find path to the package
-		$packageFilename = with(new \ReflectionClass('\Isabry\Laradmin\LaradminServiceProvider'))->getFileName();
+		$packageFilename = with(new \ReflectionClass('\Isabry\Laradmin\ServiceProvider'))->getFileName();
 		$packagePath = dirname($packageFilename);
 
-		// echo("=> Package Path: ".$packagePath."\n");
+		echo("=> Package Path: ".$packagePath."\n");
 
 		// Load the package
 		// $this->package('isabry/laradmin');
