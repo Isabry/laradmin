@@ -4,9 +4,7 @@
 */
 namespace Isabry\Laradmin;
 
-use Illuminate\Support\ServiceProvider;
-
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 	/*-------------------------------------------------------------------------
 	 * Indicates if loading of the provider is deferred.
@@ -14,6 +12,8 @@ class ServiceProvider extends ServiceProvider
 	 * @var bool
 	 */
 	protected $defer = false;
+
+	protected $packagePath;
 
 	/*-------------------------------------------------------------------------
 	 * Bootstrap the application events.
@@ -24,19 +24,20 @@ class ServiceProvider extends ServiceProvider
 	{
 		// Find path to the package
 		$packageFilename = with(new \ReflectionClass('\Isabry\Laradmin\ServiceProvider'))->getFileName();
-		$packagePath = dirname($packageFilename);
+		$this->packagePath = dirname($packageFilename);
 
-		echo("=> Package Path: ".$packagePath."\n");
+		// echo("=> Package Path: ".$this->packagePath."\n");
 
 		// Load the package
 		// $this->package('isabry/laradmin');
 
 		// Load views
-		$this->loadViewsFrom($packagePath.'/views', 'laradmin');
+		$this->loadViewsFrom($this->packagePath.'/views', 'laradmin');
 
 		// Load routes
-		include $packagePath.'/../routes.php';
-		include $packagePath.'/../filters.php';
+		include $this->packagePath.'/../routes.php';
+		include $this->packagePath.'/../filters.php';
+
 	}
 
 	/*-------------------------------------------------------------------------
@@ -46,7 +47,22 @@ class ServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+		$this->registerCommands();		
+	}
 
+	/*-------------------------------------------------------------------------
+	 */
+	public function registerCommands()
+	{
+		// publish config To [/config/laradmin.php]
+		// php artisan vendor:publish
+		$configPath = $this->packagePath . '/../config/laradmin.php';
+        $this->publishes([$configPath => config_path('laradmin.php')], 'config');
+
+		// install command
+		$this->app->bind('command.laradmin.install', 'Isabry\Laradmin\Console\InstallCommand');
+		$this->app->bind('command.laradmin.clear', 'Isabry\Laradmin\Console\ClearCommand');
+        $this->commands(array('command.laradmin.install', 'command.laradmin.clear'));
 	}
 
 	/*-------------------------------------------------------------------------
@@ -56,6 +72,6 @@ class ServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return array();
+		return array('laradmin', 'command.laradmin.install', 'command.laradmin.clear');
 	}
 }
