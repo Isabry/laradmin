@@ -34,6 +34,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 		// Load views
 		$this->loadViewsFrom($this->packagePath.'/views', 'laradmin');
 
+		// Establish Translator Namespace
+		$this->loadTranslationsFrom($this->packagePath.'/lang', 'laradmin');
+
 		// Load routes
 		include $this->packagePath.'/../routes.php';
 		include $this->packagePath.'/../filters.php';
@@ -57,12 +60,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 		// publish config To [/config/laradmin.php]
 		// php artisan vendor:publish
 		$configPath = $this->packagePath . '/../config/laradmin.php';
-        $this->publishes([$configPath => config_path('laradmin.php')], 'config');
+		$this->publishes([$configPath => config_path('laradmin.php')], 'config');
 
 		// install command
 		$this->app->bind('command.laradmin.install', 'Isabry\Laradmin\Console\InstallCommand');
 		$this->app->bind('command.laradmin.clear', 'Isabry\Laradmin\Console\ClearCommand');
-        $this->commands(array('command.laradmin.install', 'command.laradmin.clear'));
+		$this->commands(array('command.laradmin.install', 'command.laradmin.clear'));
 	}
 
 	/*-------------------------------------------------------------------------
