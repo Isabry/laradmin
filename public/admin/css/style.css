@@ -101,6 +101,9 @@ body {
 	border-radius: 50%;
 }
 
+.table > thead > tr > th.tools { width: 1%; } 
+.table > tbody > tr > td.disable { color: lightgray; }
+
 .footer {
 	position: absolute;
 	bottom: 0;

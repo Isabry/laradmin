@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package   Laradmin
+ * @author    Ismail SABRY <ismail@sabry.fr>
+ * @copyright Copyright (c) Ismail SABRY
+ */
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +19,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->call('UserTableSeeder');
+		$this->call('UsersTableSeeder');
 	}
 
 }

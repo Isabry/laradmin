@@ -7,6 +7,8 @@
  * @copyright Copyright (c) Ismail SABRY
  */
 
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
 
@@ -24,16 +26,15 @@ class UsersTableSeeder extends Seeder
 				'email' => 'admin@sabry.fr',
 				'password' => Hash::make('admin'),
 				'role' => 'admin',
-				'enable' => 0,
+				'enable' => 1,
 				'created_at' => $datetime,
 				'updated_at' => $datetime,
 			],
 		];
 
-		for($i=1; $i<50; $i++) {
+		for($i=1; $i<15; $i++) {
 			$ext = sprintf("%02d", $i);
 			$users[] = [
-				'org_id' => ($i % 4) + 1,
 				'name' => 'user'.$ext,
 				'email' => 'user'.$ext.'@sabry.fr',
 				'password' => Hash::make('user'),
@@ -42,7 +43,6 @@ class UsersTableSeeder extends Seeder
 				'created_at' => $datetime,
 				'updated_at' => $datetime,
 			];
-
 		}
 
 		DB::table('users')->insert($users);

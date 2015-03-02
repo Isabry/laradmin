@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package   Laradmin
+ * @author    Ismail SABRY <ismail@sabry.fr>
+ * @copyright Copyright (c) Ismail SABRY
+ */
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

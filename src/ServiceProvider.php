@@ -13,8 +13,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 	 */
 	protected $defer = false;
 
-	protected $packagePath;
-
 	/*-------------------------------------------------------------------------
 	 * Bootstrap the application events.
 	 *
@@ -22,25 +20,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 	 */
 	public function boot()
 	{
-		// Find path to the package
-		$packageFilename = with(new \ReflectionClass('\Isabry\Laradmin\ServiceProvider'))->getFileName();
-		$this->packagePath = dirname($packageFilename);
-
-		// echo("=> Package Path: ".$this->packagePath."\n");
-
-		// Load the package
-		// $this->package('isabry/laradmin');
-
-		// Load views
-		$this->loadViewsFrom($this->packagePath.'/views', 'laradmin');
-
-		// Establish Translator Namespace
-		$this->loadTranslationsFrom($this->packagePath.'/lang', 'laradmin');
-
-		// Load routes
-		include $this->packagePath.'/../routes.php';
-		include $this->packagePath.'/../filters.php';
-
+		// echo("=> Package Path: ". __DIR__ ."\n");
 	}
 
 	/*-------------------------------------------------------------------------
@@ -59,7 +39,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 	{
 		// publish config To [/config/laradmin.php]
 		// php artisan vendor:publish
-		$configPath = $this->packagePath . '/../config/laradmin.php';
+		$configPath = __DIR__ . '/../config/laradmin.php';
 		$this->publishes([$configPath => config_path('laradmin.php')], 'config');
 
 		// install command

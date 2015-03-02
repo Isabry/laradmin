@@ -1,4 +1,4 @@
-@extends('laradmin::layouts.default')
+@extends('layouts.default')
 
 @section('content')
 <div class="container">
