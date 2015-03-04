@@ -30,6 +30,24 @@ class UsersTableSeeder extends Seeder
 				'created_at' => $datetime,
 				'updated_at' => $datetime,
 			],
+			[
+				'name' => 'manager',
+				'email' => 'manager@sabry.fr',
+				'password' => Hash::make('manager'),
+				'role' => 'manager',
+				'enable' => 1,
+				'created_at' => $datetime,
+				'updated_at' => $datetime,
+			],
+			[
+				'name' => 'user',
+				'email' => 'user@sabry.fr',
+				'password' => Hash::make('user'),
+				'role' => 'user',
+				'enable' => 1,
+				'created_at' => $datetime,
+				'updated_at' => $datetime,
+			],
 		];
 
 		for($i=1; $i<15; $i++) {
@@ -39,7 +57,7 @@ class UsersTableSeeder extends Seeder
 				'email' => 'user'.$ext.'@sabry.fr',
 				'password' => Hash::make('user'),
 				'role' => 'user',
-				'enable' => 1,
+				'enable' => 0,
 				'created_at' => $datetime,
 				'updated_at' => $datetime,
 			];

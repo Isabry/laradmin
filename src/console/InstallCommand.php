@@ -241,7 +241,7 @@ class InstallCommand extends Command
 		} elseif( filemtime($src) > filemtime($des) ) {
 			$this->info("Updating : " . substr($des, $offset) );
 			// $this->info("From " . substr($src, $offset) );
-			// $this->files->copy($src, $des);
+			$this->files->copy($src, $des);
 		} elseif( $this->compare_files($src, $des) ) {
 			$this->error("Moified : " . substr($des, $offset) );
 		} else {
