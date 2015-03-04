@@ -1,5 +1,5 @@
 # Laradmin for Laravel 5
-Starter Site Admin based on on Laravel  and Boostrap 3
+Starter Site Admin based on Laravel 5 and Boostrap 3
 
 
 ## License
