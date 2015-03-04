@@ -10,9 +10,12 @@
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	<ul class="nav navbar-nav">
-		@foreach (Config::get('laradmin.left_menus') as $menu)
+	@foreach (Config::get('laradmin.left_menus') as $menu)
 		@if ( !($menu["auth"] XOR !Auth::guest()) ) 
-		<li {{ Request::is($menu["href"]."*")?'class="active"':'' }}>
+			@if ( isset($menu["permissions"]) )
+				@if ( in_array(Auth::user()->role,  $menu["permissions"]) )
+				{{-- debug( $menu["href"] . " <=> " . Request::path() ) --}}
+		<li {!! Request::is(ltrim($menu["href"]."*", "/"))?'class="active"':'' !!}>
 			<a href="{{$menu["href"]}}">
 				@if( Config::get('laradmin.left_menus_mode.icon') )
 					{!! $menu["icon"] !!}
@@ -22,10 +25,15 @@
 				@endif 
 			</a>
 		</li>
+				@endif
+			@endif
 		@endif
-		@endforeach
+	@endforeach
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
+		@if( Auth::check() )
+			<li><a href="#">{!! Auth::user()->name !!}</a></li>
+		@endif
 		@foreach (Config::get('laradmin.right_menus') as $menu)
 		@if ( !($menu["auth"] XOR !Auth::guest()) ) 
 		<li {{ Request::is($menu["href"]."*")?'class="active"':'' }}>

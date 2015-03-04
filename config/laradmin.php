@@ -37,7 +37,7 @@ return array(
 	 |
 	 */
 	'left_menus_mode' => array(
-		'icon' => false,
+		'icon' => true,
 		'label' => true,
 	),
 
@@ -50,15 +50,24 @@ return array(
 		),
 		'users' => array(
 			'auth'  => true,
+			'permissions' => ['admin'],
 			'href'  => '/users',
 			'icon'  => '<i class="fa fa-users"></i>',
 			'label' => 'Users',
 		),
 		'clients' => array(
 			'auth'  => true,
+			'permissions' => ['admin', 'manager'],
 			'href'  => '/clients',
-			'icon'  => '<i class="fa fa-building"></i>',
+			'icon'  => '<i class="fa fa-list-alt"></i>',
 			'label' => 'Clients',
+		),
+		'services' => array(
+			'auth'  => true,
+			'permissions' => ['admin', 'manager'],
+			'href'  => '/services',
+			'icon'  => '<i class="fa fa-tags"></i>',
+			'label' => 'Services',
 		),
 
 	),
@@ -77,20 +86,22 @@ return array(
 	),
 
 	'right_menus' => array(
-		'settings' => array(
-			'auth'  => true,
-			'href'  => '/settings',
-			'icon'  => '<i class="fa fa-sliders"></i>',
-			'label' => 'Settings',
-		),
+		// 'settings' => array(
+		// 	'auth'  => true,
+		// 	'href'  => '/settings',
+		// 	'icon'  => '<i class="fa fa-sliders"></i>',
+		// 	'label' => 'Settings',
+		// ),
 		'profile' => array(
 			'auth'  => true,
+			'permissions' => ['admin', 'manager', 'user'],
 			'href'  => '/profile',
 			'icon'  => '<i class="fa fa-user"></i>',
 			'label' => 'Profile',
 		),
 		'logout' => array(
 			'auth'  => true,
+			'permissions' => ['admin', 'manager', 'user'],
 			'href'  => '/auth/logout',
 			'icon'  => '<i class="fa fa-power-off"></i>',
 			'label' => 'Logout',

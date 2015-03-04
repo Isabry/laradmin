@@ -1,7 +1,7 @@
-@extends('admin.layouts.main')
+@extends('layouts.default')
 
 @section('content')
-@include('admin.users.form_user')
+@include('users.form_user')
 @stop
 
 @section('scripts')

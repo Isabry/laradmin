@@ -13,14 +13,24 @@
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
+		{{-- <div class="container-fluid"> --}}
+		<div class="container">
 			@include('layouts.header')
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	{{-- <div class="container-fluid"> --}}
+	<div class="container">
+		@include('layouts.notifications')
 		@yield('content')
 	</div>
+	</div>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Ismail SABRY - Copyright &copy; 2014</p>
+      </div>
+    </footer>
 
 	<script src="{{asset('admin/js/jquery-1.11.2.min.js')}}"></script>
 	<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>

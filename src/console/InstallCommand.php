@@ -38,7 +38,7 @@ class InstallCommand extends Command
 	{
 		if ( $this->confirm('Do you wish to continue? [yes|no] (yes)', true) ) {
 			$this->line('--------------------------------------------------');
-			$this->install_config();
+			$this->install_config(); 
 			$this->line('--------------------------------------------------');
 			$this->install_assets();
 			$this->line('--------------------------------------------------');
@@ -146,9 +146,7 @@ class InstallCommand extends Command
 		$src = __DIR__.'/../controllers';
 		$des = app_path().'/Http/Controllers';
 
-		$this->update_file($src.'/WelcomeController.php', $des.'/WelcomeController.php');
-		$this->update_file($src.'/HomeController.php', $des.'/HomeController.php');
-		$this->update_file($src.'/UsersController.php', $des.'/UsersController.php');
+		$this->update_directory($src, $des);
 
 		$this->line('Publishing Complete!');
 	}
@@ -185,8 +183,45 @@ class InstallCommand extends Command
 			$this->info('Force update : ' . substr($des, $offset) );
 			$this->files->copyDirectory($src, $des);
 		} else {
-			$this->info("Up to date : " . substr($des, $offset) );			
+			$this->info("Up to date : " . substr($des, $offset) );
+			$src_files = $this->scan_dir($src);	
+			// print_r($src_files);
+			$des_files = $this->scan_dir($des);	
+			// print_r($des_files);
+
+			foreach ($src_files as $key => $src_file) {
+				if(is_file ($src_file)) {
+					$subpath = substr(dirname($src_file), strlen($src));
+					$des_file = $des . $subpath . "/" . basename($src_file);
+					// $this->info("src : " . $src_file);
+					// $this->info("des : " . $des_file);
+
+					$this->update_file($src_files[$key], $des_file);
+				}
+			}
+			foreach ($des_files as $key => $des_file) {
+				if(is_file ($des_file)) {
+					$subpath = substr(dirname($des_file), strlen($des));
+					$src_file = $src . $subpath . "/" . basename($des_file);
+					// $this->info("src : " . $src_file);
+					// $this->info("des : " . $des_file);
+					if ( !file_exists($src_file) ) {
+						$this->error("missing : " . $src_file);
+						// $this->info("src : " . $src_file);
+						// $this->info("des : " . $des_file);					
+					}
+				}
+			}
 		}
+	}
+
+	/*-------------------------------------------------------------------------
+	*/
+	private function scan_dir($dir)
+	{
+		$result = [];
+		exec("find " . $dir, $result);
+		return $result;
 	}
 
 	/*-------------------------------------------------------------------------
@@ -206,7 +241,7 @@ class InstallCommand extends Command
 		} elseif( filemtime($src) > filemtime($des) ) {
 			$this->info("Updating : " . substr($des, $offset) );
 			// $this->info("From " . substr($src, $offset) );
-			$this->files->copy($src, $des);
+			// $this->files->copy($src, $des);
 		} elseif( $this->compare_files($src, $des) ) {
 			$this->error("Moified : " . substr($des, $offset) );
 		} else {
