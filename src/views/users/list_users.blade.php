@@ -21,7 +21,7 @@
 			@foreach($users as $user)
 			<tr>
 				<td>
-					{!! Form::open(['action' => ['UsersController@enable', $user->id], 'class'=>'form-horizontal']) !!} 
+					{!! Form::open(['route' => ['users.enable', $user->id], 'class'=>'form-horizontal']) !!} 
 					{!! Form::token() !!}
 					{!! Form::hidden('enable', $user->enable ) !!}
 					{!! Form::hidden('page', Input::get("page", 1) ) !!}
@@ -41,7 +41,7 @@
 					<a role="button" href="/users/{{$user->id}}/edit" class="btn btn-primary btn-circle btn-xs"><i class="fa fa-pencil "></i></a>
 				</td>
 				<td>
-					{!! Form::open(['method'=>'DELETE', 'action' => ['UsersController@destroy', $user->id], 'class'=>'form-horizontal']) !!} 
+					{!! Form::open(['method'=>'DELETE', 'route' => ['users.destroy', $user->id], 'class'=>'form-horizontal']) !!} 
 					{!! Form::token() !!}
 					{!! Form::hidden('page', Input::get("page", 1) ) !!}
 					<button type="submit" class="btn btn-danger btn-circle btn-xs"><i class="fa fa-trash-o "></i></button>

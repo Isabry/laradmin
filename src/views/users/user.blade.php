@@ -1,7 +1,7 @@
-@extends('layouts.default')
+@extends('laradmin::layouts.default')
 
 @section('content')
-@include('users.form_user')
+@include('laradmin::users.form_user')
 @stop
 
 @section('scripts')

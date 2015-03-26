@@ -1,11 +1,11 @@
-@extends('layouts.default')
+@extends('laradmin::layouts.default')
 
 @section('styles')
 @stop
 
 @section('content')
 
-@include('users.list_users')
+@include('laradmin::users.list_users')
 
 {{-- 
 {!! $users !!}

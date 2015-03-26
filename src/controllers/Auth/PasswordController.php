@@ -1,6 +1,12 @@
-<?php namespace App\Http\Controllers\Auth;
+<?php 
+/**
+ * @package   Laradmin
+ * @author    Ismail SABRY <ismail@sabry.fr>
+ * @copyright Copyright (c) Ismail SABRY
+ */
+namespace Isabry\Laradmin\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Isabry\Laradmin\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -35,4 +41,29 @@ class PasswordController extends Controller {
 		$this->middleware('guest');
 	}
 
+	/**
+	 * Display the form to request a password reset link.
+	 *
+	 * @return Response
+	 */
+	public function getEmail()
+	{
+		return view('laradmin::auth.password');
+	}
+
+	/**
+	 * Display the password reset view for the given token.
+	 *
+	 * @param  string  $token
+	 * @return Response
+	 */
+	public function getReset($token = null)
+	{
+		if (is_null($token))
+		{
+			throw new NotFoundHttpException;
+		}
+
+		return view('laradmin::auth.reset')->with('token', $token);
+	}
 }

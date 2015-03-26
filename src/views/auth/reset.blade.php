@@ -1,4 +1,4 @@
-@extends('app')
+@extends('laradmin::layouts.default')
 
 @section('content')
 	<br/><br/>

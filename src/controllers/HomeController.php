@@ -4,7 +4,7 @@
  * @author    Ismail SABRY <ismail@sabry.fr>
  * @copyright Copyright (c) Ismail SABRY
  */
-namespace App\Http\Controllers;
+namespace Isabry\Laradmin\Controllers;
 
 use Auth;
 use View;
@@ -19,7 +19,7 @@ class HomeController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
-		$this->middleware('roles');
+		// $this->middleware('roles');
 	}
 
 	/**
@@ -29,7 +29,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home.index');
+		return view('laradmin::home.index');
 	}
 
 	/**
@@ -41,7 +41,7 @@ class HomeController extends Controller {
 	{
 		$user = Auth::user();
 
-		return View::make('users.user')->with('user', $user );
+		return View::make('laradmin::users.user')->with('user', $user );
 	}
 
 }

@@ -5,7 +5,10 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="/">LARADMIN</a>
+	<a class="navbar-brand" href="/">
+		<strong class="text-primary"><i class="fa fa-openid"></i></strong>
+		<strong class="text-danger">{!!Config::get('laradmin.project.title')!!}</strong>
+	</a>
 </div>
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

@@ -1,6 +1,12 @@
-<?php namespace App\Http\Controllers\Auth;
+<?php 
+/**
+ * @package   Laradmin
+ * @author    Ismail SABRY <ismail@sabry.fr>
+ * @copyright Copyright (c) Ismail SABRY
+ */
+namespace Isabry\Laradmin\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Isabry\Laradmin\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -35,4 +41,23 @@ class AuthController extends Controller {
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
 
+	/**
+	 * Show the application login form.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function getLogin()
+	{
+		return view('laradmin::auth.login');
+	}
+
+	/**
+	 * Show the application registration form.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function getRegister()
+	{
+		return view('laradmin::auth.register');
+	}
 }

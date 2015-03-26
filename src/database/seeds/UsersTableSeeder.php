@@ -50,18 +50,18 @@ class UsersTableSeeder extends Seeder
 			],
 		];
 
-		for($i=1; $i<15; $i++) {
-			$ext = sprintf("%02d", $i);
-			$users[] = [
-				'name' => 'user'.$ext,
-				'email' => 'user'.$ext.'@sabry.fr',
-				'password' => Hash::make('user'),
-				'role' => 'user',
-				'enable' => 0,
-				'created_at' => $datetime,
-				'updated_at' => $datetime,
-			];
-		}
+		// for($i=1; $i<15; $i++) {
+		// 	$ext = sprintf("%02d", $i);
+		// 	$users[] = [
+		// 		'name' => 'user'.$ext,
+		// 		'email' => 'user'.$ext.'@sabry.fr',
+		// 		'password' => Hash::make('user'),
+		// 		'role' => 'user',
+		// 		'enable' => 0,
+		// 		'created_at' => $datetime,
+		// 		'updated_at' => $datetime,
+		// 	];
+		// }
 
 		DB::table('users')->insert($users);
 	}

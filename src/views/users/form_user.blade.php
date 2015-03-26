@@ -12,9 +12,9 @@
 	</div>
 
 	@if( isset($create) )
-	{!! Form::open(['method'=>'POST', 'action' => ['UsersController@store'], 'class'=>'form-horizontal']) !!} 
+	{!! Form::open(['method'=>'POST', 'route' => ['users.store'], 'class'=>'form-horizontal']) !!} 
 	@else
-	{!! Form::open(['method'=>'PUT', 'action' => ['UsersController@update', $user->id], 'class'=>'form-horizontal']) !!} 
+	{!! Form::open(['method'=>'PUT', 'route' => ['users.update', $user->id], 'class'=>'form-horizontal']) !!} 
 	@endif
 	{!! Form::token() !!} 
 

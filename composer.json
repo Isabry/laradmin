@@ -1,30 +1,14 @@
 {
-	"name": "isabry/laradmin",
-	"description": "Admin integration for Laravel",
-	"keywords": ["laravel", "admin"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Ismail SABRY",
-			"email": "isabry@gmail.com"
-		}
-	],
-	"require": {
-		"php": ">=5.4.0",
-		"illuminate/support": "5.0.*"
-	},
-	"autoload": {
-		"classmap": [
-			"src/controllers",
-			"src/database/migrations",
-			"src/database/seeds"
-		],
-		"psr-4": {
-			"Isabry\\Laradmin\\": "src/"
-		},
-		"files": [
-			"src/helpers.php"
-		]
-	},
-	"minimum-stability": "dev"
+    "name": "isabry/laradmin",
+    "description": "Laravel 5 admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ismail SABRY",
+            "email": "ismail@sabry.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    }
 }

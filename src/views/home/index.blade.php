@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('laradmin::layouts.default')
 
 @section('content')
 

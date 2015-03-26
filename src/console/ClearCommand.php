@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
 class ClearCommand extends Command
 {
 	protected $name = 'laradmin:clear';
-	protected $description = 'clean the Laradmin assets';
+	protected $description = 'Clean the Laradmin Assets';
 
 	/*-------------------------------------------------------------------------
 	* Execute the console command.

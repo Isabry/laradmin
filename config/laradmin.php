@@ -1,19 +1,7 @@
 <?php
 
-return array(
-	
-    /*
-     |--------------------------------------------------------------------------
-     | Laradmin Settings
-     |-------------------------------------------------------------------------
-     |
-     | Laradmin debug is enabled by default, when debug is set to true in app.php.
-     |
-     */
-
-    'enabled' => config('app.debug'),
-
-   	/*
+return [
+	/*
 	 |--------------------------------------------------------------------------
 	 | 
 	 |--------------------------------------------------------------------------
@@ -26,7 +14,20 @@ return array(
 		'name' => 'Laradmin',
 		'description' => 'Laravel Admin will help you getting started with Laravel 5',
 		'author' => 'Ismail Sabry',
+		'version' => '1.0.0',
+		'title' => 'ID Provider',
 	),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Laradmin Settings
+     |-------------------------------------------------------------------------
+     |
+     | Laradmin debug is enabled by default, when debug is set to true in app.php.
+     |
+     */
+
+    'enabled' => config('app.debug'),
 
 	/*
 	 |--------------------------------------------------------------------------
@@ -62,13 +63,13 @@ return array(
 			'icon'  => '<i class="fa fa-list-alt"></i>',
 			'label' => 'Clients',
 		),
-		'services' => array(
-			'auth'  => true,
-			'permissions' => ['admin', 'manager'],
-			'href'  => '/services',
-			'icon'  => '<i class="fa fa-tags"></i>',
-			'label' => 'Services',
-		),
+		// 'services' => array(
+		// 	'auth'  => true,
+		// 	'permissions' => ['admin', 'manager'],
+		// 	'href'  => '/services',
+		// 	'icon'  => '<i class="fa fa-tags"></i>',
+		// 	'label' => 'Services',
+		// ),
 
 	),
 
@@ -120,4 +121,4 @@ return array(
 		),
 	),
 
-);
+];

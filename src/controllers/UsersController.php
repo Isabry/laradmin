@@ -4,16 +4,16 @@
  * @author    Ismail SABRY <ismail@sabry.fr>
  * @copyright Copyright (c) Ismail SABRY
  */
-namespace App\Http\Controllers;
+namespace Isabry\Laradmin\Controllers;
 
 use Auth;
-use App\User;
 use View;
 use Input;
 use Session;
 use Redirect;
 use Hash;
 use Debugbar;
+use Isabry\Laradmin\Models\User;
 
 class UsersController extends Controller {
 
@@ -35,14 +35,9 @@ class UsersController extends Controller {
 	 */
 	public function index()
 	{
-		if( Auth::check() ) {
-			$users = User::paginate(10);
-			// Debugbar::info("CheckRole/handle");
-			return View::make('users.index')->with('users', $users);
-		} else {
-			Session::flash('error', 'You are not allowed to access Members list');
-			return Redirect::intended('home');
-		}	
+		$users = User::paginate(10);
+		// Debugbar::info("CheckRole/handle");
+		return View::make('laradmin::users.index')->with('users', $users);
 	}
 
 	/**
@@ -56,7 +51,7 @@ class UsersController extends Controller {
 		$user->role = "user";
 		$user->enable = true;
 
-		return View::make('users.user')
+		return View::make('laradmin::users.user')
 					->with('create', true)
 					->with('user', $user );
 	}
@@ -94,7 +89,7 @@ class UsersController extends Controller {
 	{
 		$user = User::findOrFail($id);
 
-		return View::make('users.user')
+		return View::make('laradmin::users.user')
 					->with('user', $user );
 	}
 
@@ -107,7 +102,7 @@ class UsersController extends Controller {
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		return View::make('users.user')
+		return View::make('laradmin::users.user')
 					->with('edit', true)
 					->with('user', $user );
 	}
