@@ -15,7 +15,7 @@ return [
 		'description' => 'Laravel Admin will help you getting started with Laravel 5',
 		'author' => 'Ismail Sabry',
 		'version' => '1.0.0',
-		'title' => 'ID Provider',
+		'title' => 'Laradmin',
 	),
 
     /*
