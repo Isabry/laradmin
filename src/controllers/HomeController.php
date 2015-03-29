@@ -8,6 +8,7 @@ namespace Isabry\Laradmin\Controllers;
 
 use Auth;
 use View;
+use Debugbar;
 
 class HomeController extends Controller {
 
@@ -39,6 +40,9 @@ class HomeController extends Controller {
 	 */
 	public function profile()
 	{
+		// $menus = AppMenu::getMenus('left');
+		// Debugbar::info($menus);
+
 		$user = Auth::user();
 
 		return View::make('laradmin::users.user')->with('user', $user );

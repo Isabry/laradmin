@@ -16,20 +16,24 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 	protected $defer = false;
 
 	/**
+	 * Bootstrap the application events.
+	 * This method is called after all other service providers have been registered, 
+	 * @return void
+	 */
+	public function boot()
+	{
+
+	}
+
+	/**
 	 * Register the service provider.
 	 *
 	 * @return void
 	 */
 	public function register()
 	{
-		// publish config To [/config/laradmin.php]
-		// php artisan vendor:publish
-		$configPath = __DIR__ . '/../config/laradmin.php';
-		$this->mergeConfigFrom($configPath, 'laradmin');
-		
-		$this->app->bind('command.laradmin.clear', 'Isabry\Laradmin\Console\ClearCommand');
-
-		$this->commands(array('command.laradmin.clear'));
+		$this->registerAssets();
+		$this->registerBindings();
 	}
 
 	/**
@@ -37,7 +41,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 	 *
 	 * @return void
 	 */
-	public function boot()
+	public function registerAssets()
 	{
 		// $app = $this->app;
 
@@ -66,6 +70,21 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 		include __DIR__.'/routes.php';
 
 		$this->loadViewsFrom(__DIR__.'/views', 'laradmin');
+	}
+
+	/**
+	 * Register the assets to be published
+	 * @return void
+	 */
+	public function registerBindings()
+	{
+		$this->app['laradmin'] = $this->app->share(function($app) {
+			return new LaradminMenu();
+		});
+		
+		$this->app->bind('command.laradmin.clear', 'Isabry\Laradmin\Console\ClearCommand');
+
+		$this->commands(array('command.laradmin.clear'));
 	}
 
 	/**

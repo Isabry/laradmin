@@ -1,8 +1,8 @@
 <?php
 
 Route::group(['middleware' => 'auth'], function() {
-	Route::get('/',       'Isabry\Laradmin\Controllers\HomeController@index');
-	Route::get('home',    'Isabry\Laradmin\Controllers\HomeController@index');
+	// Route::get('/',       'Isabry\Laradmin\Controllers\HomeController@index');
+	// Route::get('home',    'Isabry\Laradmin\Controllers\HomeController@index');
 	Route::get('profile', 'Isabry\Laradmin\Controllers\HomeController@profile');
 });
 

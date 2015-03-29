@@ -14,6 +14,7 @@ use Redirect;
 use Hash;
 use Debugbar;
 use Isabry\Laradmin\Models\User;
+use Isabry\Laradmin\Models\Menu;
 
 class UsersController extends Controller {
 

@@ -45,14 +45,14 @@ class CheckRole{
 	{
 		$role = $request->user()->role;
 
-		Debugbar::info("[CheckRole] role : " . $role);
+		// Debugbar::info("[CheckRole] role : " . $role);
 
 		$actions = $request->route()->getAction();
-		Debugbar::info("[CheckRole] actions : ");
-		Debugbar::info($actions);
+		// Debugbar::info("[CheckRole] actions : ");
+		// Debugbar::info($actions);
 
 		if( isset($actions['permissions']) ) {
-			Debugbar::info($actions['permissions']);
+			// Debugbar::info($actions['permissions']);
 			if(in_array($role, $actions['permissions'])) {
 				return true;
 			} else {
